@@ -1,0 +1,32 @@
+name: Compile LaTeX to PDF
+
+on:
+  push:
+    branches:
+      - main  # Run the workflow when pushing to the main branch
+  pull_request:
+    branches:
+      - main  # Optionally run on pull requests to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up LaTeX environment
+      uses: dante-ev/latex-action@v2  # A popular LaTeX Action
+
+    - name: Compile LaTeX to PDF
+      run: latexmk -pdf -file-line-error -interaction=nonstopmode main.tex
+
+    - name: Upload compiled PDF to repository
+      run: |
+        git config --global user.name "yidiwang21"
+        git config --global user.email "ywang49@scu.edu"
+        git add main.pdf
+        git commit -m "Add compiled PDF"
+        git push
+
