@@ -16,8 +16,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up LaTeX environment
-      uses: dante-ev/latex-action@v2  # A popular LaTeX Action
+#    - name: Set up LaTeX environment
+#      uses: dante-ev/latex-action@v2  # A popular LaTeX Action
 
     - name: Compile LaTeX to PDF
       run: latexmk -pdf -file-line-error -interaction=nonstopmode main.tex
