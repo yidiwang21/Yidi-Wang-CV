@@ -1,0 +1,371 @@
+%%%%
+% MTecknology's Resume
+%%%%
+% Author: Michael Lustfield
+% License: CC-BY-4
+% - https://creativecommons.org/licenses/by/4.0/legalcode.txt
+%%%%
+
+\documentclass[letterpaper,10pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% BEGIN_FILE: mteck.sty
+%% NOTE: Everything between here and END_FILE can
+%% be relocated to "mteck.sty" and then included with:
+%\usepackage{mteck}
+
+% Dependencies
+% NOTE: Some packages (lastpage, hyperref) require second build!
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{amsmath} 
+\usepackage{ragged2e}
+
+% Sans-Serif
+%\usepackage[sfdefault]{FiraSans}
+%\usepackage[sfdefault]{roboto}
+%\usepackage[sfdefault]{noto-sans}
+%\usepackage[default]{sourcesanspro}
+
+% Serif
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+
+% Colors
+% Use with \color{Name}
+% Can wrap entire heading with {\color{accent} [...] }
+\usepackage{xcolor}
+\definecolor{accentTitle}{HTML}{0e6e55}
+\definecolor{accentText}{HTML}{0e6e55}
+\definecolor{accentLine}{HTML}{a16f0b}
+
+% Misc. Options
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+
+% Adjust Margins
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\evensidemargin}{-0.2in}
+\addtolength{\textwidth}{0.75in}
+\addtolength{\topmargin}{-0.2in}
+\addtolength{\textheight}{0.5in}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\footskip}{3.7pt}
+\raggedbottom
+\raggedright
+
+% ATS Readability
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+%-----------------%
+% Custom Commands %
+%-----------------%
+
+% Centered title along with subtitle between HR
+% Usage: \documentTitle{Name}{Details}
+\newcommand{\documentTitle}[2]{
+  \begin{center}
+    {\Huge\color{accentTitle} #1}
+    \vspace{10pt}
+    {\color{accentLine} \hrule}
+    \vspace{2pt}
+    %{\footnotesize\color{accentTitle} #2}
+    \footnotesize{#2}
+    \vspace{2pt}
+    {\color{accentLine} \hrule}
+  \end{center}
+}
+
+% Create a footer with correct padding
+% Usage: \documentFooter{\thepage of X}
+\newcommand{\documentFooter}[1]{
+  \setlength{\footskip}{10.25pt}
+  \fancyfoot[C]{\footnotesize #1}
+}
+
+% Simple wrapper to set up page numbering
+% Usage: \numberedPages
+% WARNING: Must run pdflatex twice!
+\newcommand{\numberedPages}{
+  \documentFooter{\thepage/\pageref{LastPage}}
+}
+
+% Section heading with horizontal rule
+% Usage: \section{Title}
+\titleformat{\section}{
+  \vspace{-5pt}
+  \color{accentText}
+  \raggedright\large\bfseries
+}{}{0em}{}[\color{accentLine}\titlerule]
+
+% Section heading with separator and content on same line
+% Usage: \tinysection{Title}
+\newcommand{\tinysection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  {\large{\bfseries\color{accentText}#1} {\color{accentLine} |}}
+}
+
+% Indented line with arguments left/right aligned in document
+% Usage: \heading{Left}{Right}
+\newcommand{\heading}[2]{
+  \hspace{10pt}#1\hfill#2\\
+}
+
+% Adds \textbf to \heading
+\newcommand{\headingBf}[2]{
+  \heading{\textbf{#1}}{\textbf{#2}}
+}
+
+% Adds \textit to \heading
+\newcommand{\headingIt}[2]{
+  \heading{\textit{#1}}{\textit{#2}}
+}
+
+% Template for itemized lists
+% Usage: \begin{resume_list} [items] \end{resume_list}
+\newenvironment{resume_list}{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
+}{
+  \end{itemize}
+  %\vspace{-2pt}
+}
+
+\newcommand{\itemalign}[2]{%
+  \vspace{-5pt}\item \text{#1}\hfill #2 \par
+}
+
+
+% Formats an item to use as an itemized title
+% Usage: \itemTitle{Title}
+\newcommand{\itemTitle}[1]{
+  \item[] \underline{#1}\vspace{4pt}
+}
+
+% Bullets used in itemized lists
+\renewcommand\labelitemi{--}
+
+%% END_FILE: mteck.sty
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%===================%
+% John Doe's Resume %
+%===================%
+
+%\numberedPages % NOTE: lastpage requires a second build
+%\documentFooter{\thepage of 2} % Does similar without using lastpage
+\begin{document}
+
+  %---------%
+  % Heading %
+  %---------%
+
+  \documentTitle{Yidi Wang}{
+    % Web Version
+    %\raisebox{-0.05\height} \faPhone\ [redacted - web copy] ~
+    %\raisebox{-0.15\height} \faEnvelope\ [redacted - web copy] ~
+    %%
+    \href{tel:4085513818}{
+      \raisebox{-0.05\height} \faPhone\ (408)551-3818} ~ | ~
+    \href{mailto:user@domain.tld}{
+      \raisebox{-0.15\height} \faEnvelope\ ywang49@scu.edu} ~ | ~
+    \href{https://www.linkedin.com/in/yidi-wang-315649119/}{
+      \raisebox{-0.15\height} \faLinkedin\ linkedin.com/in/yidi-wang-315649119/} 
+    %\href{https://github.com/USER}{
+%      \raisebox{-0.15\height} \faGithub\ github.com/USER}
+  }
+
+  %---------%
+  % Summary %
+  %---------%
+  \begin{justify}
+  \tinysection{Research Interests}
+  My primary research interests are in the field of real-time embedded and cyber-physical systems. The core objective of my work is to advance the design of energy-efficient, preemptive, and responsive computing systems, particularly when confronted with dynamic timing constraints.
+  \end{justify}
+
+  %--------%
+  % Skills %
+  %--------%
+
+  % \section{Skills}
+
+  % \begin{multicols}{2}
+  %   \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=75pt]
+  %     \item[\textbf{Automation}] SaltStack, Ansible, Chef, Puppet
+  %     \item[\textbf{Cloud}] Salt-Cloud, Linode, GCP, AWS
+  %     \item[\textbf{Languages}] Python, Bash, PHP, Perl, VB/C\#.Net
+  %     \item[\textbf{OS}] Debian, Ubuntu, CentOS, BSD, AIX
+  %     \item[\textbf{Policies}] CIS, SOC2, PCI-DSS, GDPR, ITIL
+  %     \item[\textbf{Testing}] Pytest, Docker, CircleCI, Jenkins, Inspec
+  %   \end{itemize}
+  % \end{multicols}
+
+  %------------%
+  % Employment %
+  %------------%
+  \section{Employment}
+  
+    \headingBf{Santa Clara University}{Santa Clara, CA, USA}
+    \headingIt{Assistant Professor in Department of Computer Science and Engineering}{Sept 2024 -- Present}
+    \vspace{5pt}
+
+    \headingBf{University of California, Riverside}{Riverside, CA, USA}
+    \headingIt{Postdoc in Department of Electrical and Computer Engineering}{Aug 2023 -- Jul 2024}
+
+  %------------%
+  % Education and Training %
+  %------------%
+  \section{Education}
+
+    \headingBf{University of California, Riverside}{Riverside, CA, USA}
+    \headingIt{Ph.D. in Electrical and Computer Engineering}{Sept 2019 -- Jun 2023}
+    \begin{resume_list}
+        \item Area of Expertise: Real-time Systems, Embedded Systems, GPUs
+        \item Dissertation: Advancing Real-Time GPU Scheduling: Energy Efficiency and Preemption Strategies
+        \item Advisor: Prof. Hyoseung Kim
+        \item Coursework: Real-Time Embedded Systems, Advanced Operating Systems, Design and Analysis of Algorithms, GPU Architecture and Parallel Programming
+    \end{resume_list}
+
+    \headingBf{University of California, Riverside}{Riverside, CA, USA}
+    \headingIt{M.S in Electrical and Computer Engineering}{Sept 2018 -- Jun 2019}
+    \vspace{5pt}
+
+    \headingBf{Huazhong University of Science and Technology}{Wuhan, China}
+    \headingIt{Bachelor in Electrical Engineering}{Sept 2014 -- Jun 2018}
+
+  %------------%
+  % Publications %
+  %------------%
+  \section{Publications}
+  \begin{justify}
+  \begin{itemize}
+      \item Yidi Wang Cong Liu, Daniel Wong, and Hyoseung Kim. GPU Context-Aware Real-Time Scheduling: New Approaches and Improved Analysis. In submission.
+      \item Mohsen Karimi, Yidi Wang, Youngbin Kim, Yoojin Lim, and Hyoseung Kim. CARTOS: A Charging-Aware Real-Time Operating System for Intermittent Batteryless Devices. In submission.
+    \item Yidi Wang Cong Liu, Daniel Wong, and Hyoseung Kim. GCAPS: Analyzable GPU Context-Aware Preemptive Scheduling Approach for Real-Time Tasks. Euromicro Conference on Real-Time Systems (ECRTS), 2024.
+    \item Yidi Wang, Mohsen Karimi, and Hyoseung Kim. Towards Energy-Efficient Real-Time Scheduling of Heterogeneous Multi-GPU Systems. Real-Time Systems Symposium (RTSS), 2022.
+    \item Mohsen Karimi, Yidi Wang, and Hyoseung Kim. An Open-Source Power Monitoring Framework for Real-Time Energy- Aware GPU Scheduling Research. Open Demo Session of IEEE Real-Time Systems Symposium (RTSS@ Work), 2022.
+    \item Mohsen Karimi, Yidi Wang, and Hyoseung Kim. Energy-Adaptive Real-time Sensing for Batteryless Devices. IEEE International Conference on Embedded and Real-Time Computing Systems and Applications (RTCSA), 2022.
+    \item Yidi Wang, Mohsen Karimi, Yecheng Xiang, and Hyoseung Kim. Balancing Energy Efficiency and Real-Time Performance in GPU Scheduling. Real-Time Systems Symposium (RTSS), 2021.
+    \item Yecheng Xiang, Yidi Wang, Hyunjong Choi, Mohsen Karimi and Hyoseung Kim. AegisDNN: Dependable and Timely Execution of DNN Tasks with SGX. Real-Time Systems Symposium (RTSS), 2021.
+    \item Mohsen Karimi, Hyunjong Choi, Yidi Wang, Yecheng Xiang, Hyoseung Kim. Real-Time Task Scheduling on Intermittently Powered Batteryless Devices. In IEEE Internet of Things Journal, 2021.
+    \item Yidi Wang and Hyoseung Kim. Work-in-Progress: Understanding the Effect of Kernel Scheduling on GPU Energy Consumption. In Brief Presentation Session of IEEE Real-Time Systems Symposium (RTSS), 2019.
+  \end{itemize}
+  \end{justify}
+    
+    
+  %------------%
+  % Research Projects %
+  %------------%
+
+  \section{Reseach Projects}
+
+  \headingBf{Improving Throughput and Latency for ML Inference Server on AMD GPUs}{2023 -- Present}
+  \begin{justify}
+  \begin{resume_list}
+    % \itemTitle{Client: Notable Placement}
+    \item AMD GPUs are gaining more and more attentions due to its software stack openness. The common issue in GPU resource management is underutilization, and this challenge persists with AMD GPUs. In this research, we aim to enhance the throughput and latency of a PyTorch inference server by leveraging AMD GPU’s unique characteristics and addressing their inherent constraints. My primary responsivity in this project is to guide a junior PhD student to walk through the whole process from experiment design to paper writing.
+  \end{resume_list}
+  \end{justify}
+
+  \headingBf{Preemptive Priority-Based Scheduling for Real-time GPU Tasks}{2023 -- Present}
+  \begin{justify}
+  \begin{resume_list}
+      \item This work aims to enable preemptive scheduling mechanisms for real-time GPU workloads at device driver level at contemporary embedded GPU platforms. The main goals of the project include: (1) the development of preemptive strategies for GPU workload with minimum source code modifications, (2) the predictability of GPU timing resource management, and (3) the comprehensive real-time analysis for the strategies.
+  \end{resume_list}
+  \end{justify}
+
+  \headingBf{Energy-Efficient Spatial Multitasking for Heterogeneous GPU Systems}{2021 -- 2022}
+  \begin{justify}
+  \begin{resume_list}
+      \item Due to the lack of SM-level power-gating on GPUs, the spatial multitasking for GPU workloads can unavoidably bring higher energy consumption. This project aims to address this issue in a real-time system. In the project, I developed sBEET, a real-time GPU scheduling framework that dynamically adjusts the degree of spatial multitasking by weighing GPU energy consumption against the system’s real-time requirements. The sBEET is further expanded to sBEET-mg focusing on a multi-GPU system.
+  \end{resume_list}
+  \end{justify}
+
+  \headingBf{Real-time Scheduling on Intermittently-Powered Devices}{2021 -- 2023}
+  \begin{justify}
+  \begin{resume_list}
+      \item A significant challenge arises when scheduling tasks on battery-less devices that intermittently derive power from environmental sources. To address this, I have been involved in developing a framework that models energy harvesting and consumption for these devices, ensuring efficient task execution on their processors. My primary contribution in the projects includes the implementation of diverse energy prediction methods, including ML-based strategies, and the formulation of comprehensive schedulability analysis.
+  \end{resume_list}
+  \end{justify}
+
+  \headingBf{Dependable DNN Inference Framework}{2021 - 2022}
+  \begin{justify}
+  \begin{resume_list}
+      \item This work aims to provide dependable and timely execution of deep neural network (DNN) tasks. The Intel Software Guard Extensions (SGX) enclave provides a secure and isolated execution environment that is tamper-resistant, and the memory and state of the enclave are encrypted. To protect DNN inference from malicious attacks, I have been involved in developing a framework for executing DNN tasks within the secure environment of SGX. My primary contribution to this project includes employing ML-based approaches to obtain a task-level SDC (silent data corruption) probability for a given layer protection configuration.
+  \end{resume_list}
+  \end{justify}
+
+  %----------------------------%
+  % Teaching %
+  %----------------------------%
+
+  \section{Teaching Experience}
+
+  \headingBf{Santa Clara University}{Santa Clara, CA, USA}
+  \headingIt{CSEN20: Introduction to Embedded Systems}{}
+  \begin{resume_list}
+    \item Fall 2024
+  \end{resume_list}
+  \headingIt{CSEN283: Operating Systems}{}
+  \begin{resume_list}
+      \item Winter 2025
+  \end{resume_list}
+
+  \headingBf{University of California, Riverside}{Riverside, CA, USA}
+  \headingIt{EE128: Sensing and Actuation for Embedded Systems}{}
+  \begin{resume_list}
+      \item Spring 2023 (Instructor), Spring 2021 (TA), Fall 2020 (TA)
+  \end{resume_list}
+
+    %-----------%
+  % Reviewer %
+  %-----------%
+  \section{Peer Reviewer}
+  \begin{itemize}
+      \itemalign{IEEE Real-Time and Embedded Technology and Applications Symposium (RTAS) - Brief Presentations}{2024}
+      \itemalign{ACM Transactions on Embedded Computing Systems (TECS)}{2023 -- 2024}
+      \itemalign{CMTransactions on Cyber-Physical Systems (TCPS)}{2023 -- 2024}
+      \itemalign{IEEE Transactions on Computer Aided Design of Integrated Circuits and Systems (TCAD)}{2023 -- 2024}
+      \itemalign{IEEE Transactions on Parallel and Distributed Systems (TPDS)}{2022 -- 2023}
+      \itemalign{Real-Time Systems Journal}{2023}
+      \itemalign{IEEE Real-Time Systems Symposium (RTSS), SecondaryReviewer}{2021}
+  \end{itemize}
+
+
+    %-----------%
+  % Professional Experience %
+  %-----------%
+
+  \section{Professional Experience}
+
+  \headingBf{TuSimple Inc.}{San Diego, CA, USA} % Note: Adding year(s) exposes an implied age
+  \headingIt{Software Development Engineer - Intern}{Jun 2022 -- Nov 2022}
+    \begin{resume_list}
+        \item Analyzed GPU bottlenecks in self-driving applications and proposed improvements.
+        \item Integrated the improvements into self-driving system to reduce critical path delays.
+    \end{resume_list}
+
+  \headingBf{Wuhan Tianyu Information Industry Co., LTD}{Wuhan, China}
+  \headingIt{Embedded Software Engineer - Intern}{Jul 2018 - Aug 2018}
+  \begin{resume_list}
+      \item Migrated essential drivers from a previous embedded system to a new IC card device.
+      \item Worked with the test team to thoroughly test the device, ensuring performance standards and product quality.
+  \end{resume_list}
+
+\end{document}
