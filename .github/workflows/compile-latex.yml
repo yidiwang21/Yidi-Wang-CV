@@ -27,9 +27,10 @@ jobs:
 
     - name: Upload compiled PDF to repository
       run: |
+	move main.pdf Yidi-Wang-CV.pdf
         git config --global user.name "yidiwang21"
         git config --global user.email "ywang49@scu.edu"
-        git add main.pdf
+        git add Yidi-Wang-CV.pdf
         git commit -m "Add compiled PDF"
         git push
 
