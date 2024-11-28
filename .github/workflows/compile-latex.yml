@@ -26,8 +26,8 @@ jobs:
 #      run: latexmk -pdf -file-line-error -interaction=nonstopmode main.tex
 
     - name: Upload compiled PDF to repository
-      run: |
-	move main.pdf Yidi-Wang-CV.pdf
+     run: |
+	mv main.pdf Yidi-Wang-CV.pdf
         git config --global user.name "yidiwang21"
         git config --global user.email "ywang49@scu.edu"
         git add Yidi-Wang-CV.pdf
